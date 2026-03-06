@@ -83,6 +83,8 @@ github.com/ranjitparmar
   <!-- CSS -->
   <link rel="stylesheet" href="/assets/css/style.css">
 
+  <!-- Sitemap -->
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
 </head>
 
 <body>
@@ -97,7 +99,22 @@ github.com/ranjitparmar
       <a href="#education">Education</a>
       <a href="#connect">Contact</a>
     </div>
+    <!-- Mobile hamburger -->
+    <button class="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
+
+  <!-- Mobile nav drawer -->
+  <div class="nav-drawer" aria-hidden="true">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#connect">Contact</a>
+  </div>
 
   <!-- ── HERO ── -->
   <header class="hero">
@@ -106,9 +123,7 @@ github.com/ranjitparmar
       <div>
         <h1>Backend Systems,<br />Security &amp; AI</h1>
         <p class="hero-desc">
-          I design and build scalable backend infrastructure, security-resilient architectures, and AI-integrated
-          software. Currently studying Information Technology at LD College of Engineering and looking for opportunities
-          to work on meaningful engineering challenges.
+          I build backend systems, work on security, and integrate AI where it makes sense. Currently at LD College of Engineering, working on real problems alongside coursework.
         </p>
         <div class="hero-building">
           <span class="building-dot"></span>
@@ -123,7 +138,6 @@ github.com/ranjitparmar
       <div class="hero-photo-wrap">
         <img src="/assets/images/profile-photo.jpg" alt="Ranjit Parmar — Software Engineer" loading="lazy"
           class="hero-photo" onerror="this.style.display='none'" />
-        <!-- <span class="hero-photo-name">Ranjit Parmar</span> -->
       </div>
     </div>
   </header>
@@ -136,17 +150,12 @@ github.com/ranjitparmar
     <div class="about-grid">
       <div class="about-text">
         <p>
-          I work primarily on backend systems — building APIs, designing data models, and thinking about how services
+          I work primarily on backend systems - building APIs, designing data models, and thinking about how services
           talk to each other at scale. Security isn't a layer I add at the end; it's a constraint I design around from
           the start.
         </p>
         <p>
-          Outside of pure engineering, I spend time on applied AI — integrating language models into real workflows and
-          understanding where they add genuine value rather than noise.
-        </p>
-        <p>
-          I'm in my third year at LD College of Engineering and actively looking for engineering internships where I can
-          contribute to a real codebase and learn from experienced engineers.
+          Outside that, I explore applied AI - building things with language models and understanding when they're worth using.
         </p>
       </div>
       <div class="about-meta">
@@ -164,7 +173,7 @@ github.com/ranjitparmar
         </div>
         <div class="meta-item">
           <div class="meta-key">Status</div>
-          <div class="meta-val">Open to internships &amp; collaborations</div>
+          <div class="meta-val">Open to work &amp; collaborations</div>
         </div>
       </div>
     </div>
@@ -235,20 +244,27 @@ github.com/ranjitparmar
     <div>
 
       <article class="exp-item" itemscope itemtype="https://schema.org/OrganizationRole">
-        <div>
-          <div class="exp-role" itemprop="roleName">Security Analyst Consultant</div>
-          <div class="exp-company">
-            <a href="https://www.linkedin.com/company/appxin/" target="_blank" rel="noopener noreferrer"
-              itemprop="worksFor">AppX</a>
-            <span class="badge">YC S21</span>
-          </div>
-          <div class="exp-points">
-            <p class="exp-point">Conducted end-to-end security assessments across web and mobile interfaces, identifying
-              critical vulnerabilities in authentication flows, API endpoints, and client-side logic.</p>
-            <p class="exp-point">Documented findings with clear reproduction steps and severity ratings, enabling the
-              engineering team to prioritise and remediate efficiently.</p>
-            <p class="exp-point">Collaborated directly with engineers to validate fixes and advise on secure
-              implementation patterns.</p>
+        <div class="exp-main">
+          <!-- AppX logo — drop appx-logo.avif into /assets/images/ -->
+          <img
+            src="/assets/images/appx-logo.avif"
+            alt="AppX logo"
+            class="exp-logo"
+            loading="lazy"
+            onerror="this.style.display='none'"
+          />
+          <div class="exp-content">
+            <div class="exp-role" itemprop="roleName">Security Analyst Consultant</div>
+            <div class="exp-company">
+              <a href="https://www.linkedin.com/company/appxin/" target="_blank" rel="noopener noreferrer"
+                itemprop="worksFor">AppX</a>
+              <span class="badge">YC S21</span>
+            </div>
+            <div class="exp-points">
+              <p class="exp-point">Identified 25+ vulnerabilities across web and Android surfaces, ranging from critical to informational severity. Covered injection flaws, broken authentication, insecure direct object references, and sensitive data exposure.</p>
+              <p class="exp-point">Documented each finding with reproduction steps and severity ratings so the engineering team could triage and fix efficiently.</p>
+              <p class="exp-point">Assessed web and Android apps, working directly with engineers to verify fixes and review implementation.</p>
+            </div>
           </div>
         </div>
         <div class="exp-period">Jan 2025 – Jun 2025</div>
@@ -269,9 +285,7 @@ github.com/ranjitparmar
           <div class="project-name">Codiva</div>
           <div class="project-tagline">Prompt to Production</div>
           <p class="project-desc">
-            Codiva lets developers describe what they want to build in plain language and handles everything else — code
-            generation, containerisation, and deployment — delivering a live application at a dedicated URL in seconds.
-            It's aimed at reducing the gap between an idea and a working, accessible prototype.
+            You describe what you want to build, Codiva generates the code, packages it in a Docker container, and serves it at a live URL. Each app runs isolated behind a reverse-proxied subdomain, spun up per request. No setup, no config.
           </p>
           <div class="project-tags">
             <span class="project-tag">Next.js</span>
@@ -318,8 +332,7 @@ github.com/ranjitparmar
   <section id="connect" class="cta-section" aria-label="Contact Ranjit Parmar">
     <h2 class="cta-title">Open to the right<br /><em>opportunities.</em></h2>
     <p class="cta-sub">
-      If you're working on something interesting in backend infrastructure, security, or AI — or if you're looking for a
-      focused engineering intern — I'd like to hear from you.
+      Working on something in backend, security, or AI? I'd like to hear about it.
     </p>
     <div class="cta-links">
       <a href="mailto:hello@ranjitparmar.in" class="cta-email">hello@ranjitparmar.in</a>

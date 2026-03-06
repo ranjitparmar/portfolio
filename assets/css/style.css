@@ -62,6 +62,80 @@ nav {
     color: #1a1a1a;
 }
 
+/* ── HAMBURGER ── */
+.nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    width: 32px;
+    height: 32px;
+}
+
+.nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 1px;
+    background: #333;
+    border-radius: 2px;
+    transition: all 0.25s ease;
+    transform-origin: center;
+}
+
+.nav-hamburger.is-open span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+}
+
+.nav-hamburger.is-open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.nav-hamburger.is-open span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ── MOBILE NAV DRAWER ── */
+.nav-drawer {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    z-index: 49;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid #f0f0f0;
+    flex-direction: column;
+    padding: 8px 0 16px;
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.nav-drawer.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.nav-drawer a {
+    font-size: 15px;
+    color: #444;
+    padding: 12px 24px;
+    transition: color 0.15s, background 0.15s;
+}
+
+.nav-drawer a:hover {
+    color: #111;
+    background: #f8f8f8;
+}
+
 /* ── HERO ── */
 .hero {
     padding: 152px 60px 96px;
@@ -80,7 +154,7 @@ nav {
 
 .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(46px, 6vw, 68px);
+    font-size: clamp(38px, 6vw, 68px);
     font-weight: 400;
     line-height: 1.1;
     letter-spacing: -0.02em;
@@ -100,6 +174,7 @@ nav {
 .hero-links {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 /* ── HERO PHOTO ── */
@@ -290,6 +365,7 @@ section {
     color: #bbb;
     min-width: 90px;
     padding-top: 2px;
+    flex-shrink: 0;
 }
 
 .skill-list {
@@ -314,10 +390,35 @@ section {
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 40px;
+    align-items: start;
 }
 
 .exp-item:first-child {
     border-top: 1px solid #f0f0f0;
+}
+
+/* Logo + content side by side */
+.exp-main {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.exp-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+    padding: 4px;
+    background: #fff;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.exp-content {
+    flex: 1;
+    min-width: 0;
 }
 
 .exp-role {
@@ -334,6 +435,7 @@ section {
     display: flex;
     align-items: center;
     gap: 6px;
+    flex-wrap: wrap;
 }
 
 .exp-company a {
@@ -367,20 +469,22 @@ section {
 .exp-point {
     font-size: 14px;
     color: #555;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.75;
     padding-left: 14px;
     position: relative;
 }
 
 .exp-point::before {
-    content: '—';
+    content: "";
     position: absolute;
     left: 0;
-    color: #ccc;
-    font-size: 12px;
+    top: 10px;
+    width: 4px;
+    height: 4px;
+    background: #ccc;
+    border-radius: 50%;
 }
-
 .exp-period {
     font-size: 12px;
     color: #aaa;
@@ -452,6 +556,7 @@ section {
     transition: color 0.2s, transform 0.2s;
     display: block;
     align-self: flex-start;
+    flex-shrink: 0;
 }
 
 .project-item:hover .project-arrow {
@@ -503,6 +608,7 @@ section {
     font-size: 12px;
     color: #aaa;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .edu-degree {
@@ -535,7 +641,7 @@ section {
 
 .cta-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(30px, 4vw, 44px);
+    font-size: clamp(28px, 4vw, 44px);
     font-weight: 400;
     letter-spacing: -0.02em;
     color: #111;
@@ -579,6 +685,7 @@ section {
     color: #111;
     border-bottom: 1px solid #111;
     padding-bottom: 1px;
+    word-break: break-all;
 }
 
 .cta-email:hover {
@@ -651,8 +758,12 @@ footer {
     color: #1a1a1a;
 }
 
-/* ── MOBILE ── */
+/* ════════════════════════════════════════
+   MOBILE — max-width: 700px
+   ════════════════════════════════════════ */
 @media (max-width: 700px) {
+
+    /* Nav */
     nav {
         padding: 0 20px;
     }
@@ -661,28 +772,60 @@ footer {
         display: none;
     }
 
-    .hero,
-    section,
-    .cta-section {
-        padding-left: 24px;
-        padding-right: 24px;
+    .nav-hamburger {
+        display: flex;
+    }
+
+    .nav-drawer {
+        display: flex;
+    }
+
+    /* Hero */
+    .hero {
+        padding: 100px 24px 64px;
     }
 
     .hero-inner {
         grid-template-columns: 1fr;
-        gap: 32px;
+        gap: 0;
     }
 
+    /* Show photo inline at top on mobile, before the text */
     .hero-photo-wrap {
+        order: -1;
         flex-direction: row;
         justify-content: flex-start;
+        margin-bottom: 28px;
+        padding-top: 0;
     }
 
+    .hero-photo {
+        width: 72px;
+        height: 72px;
+    }
+
+    .hero h1 {
+        font-size: clamp(34px, 9vw, 46px);
+    }
+
+    .hero-desc {
+        font-size: 15px;
+        max-width: 100%;
+    }
+
+    /* Sections */
+    section,
+    .cta-section {
+        padding: 52px 24px;
+    }
+
+    /* About */
     .about-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 36px;
     }
 
+    /* Skills */
     .skill-group {
         flex-direction: column;
         gap: 8px;
@@ -692,25 +835,60 @@ footer {
         min-width: unset;
     }
 
-    .exp-item,
+    /* Experience */
+    .exp-item {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .exp-period {
+        margin-top: 16px;
+        padding-top: 0;
+    }
+
+    /* Projects */
     .project-item {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 0;
+        position: relative;
     }
 
+    .project-arrow {
+        /* Move arrow to top-right corner */
+        position: absolute;
+        top: 36px;
+        right: 0;
+    }
+
+    .project-desc {
+        max-width: 100%;
+        /* Give a bit of right padding so text doesn't go under the arrow */
+        padding-right: 28px;
+    }
+
+    /* Education */
     .edu-item {
-        grid-template-columns: 1fr;
-    }
-
-    .edu-logo {
-        display: none;
+        gap: 16px;
     }
 
     .edu-top {
         flex-direction: column;
         gap: 2px;
+        align-items: flex-start;
     }
 
+    .edu-school {
+        font-size: 15px;
+    }
+
+    /* CTA */
+    .cta-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    /* Footer */
     footer {
         flex-direction: column;
         gap: 28px;
@@ -719,6 +897,25 @@ footer {
 
     .footer-right {
         flex-direction: column;
-        gap: 24px;
+        gap: 20px;
+    }
+}
+
+/* ════════════════════════════════════════
+   SMALL MOBILE — max-width: 380px
+   ════════════════════════════════════════ */
+@media (max-width: 380px) {
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .btn {
+        padding: 9px 18px;
+        font-size: 12px;
+    }
+
+    .skill {
+        font-size: 12px;
+        padding: 4px 10px;
     }
 }
