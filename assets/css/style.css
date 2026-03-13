@@ -9,7 +9,7 @@ html {
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
     background: #ffffff;
     color: #1a1a1a;
     line-height: 1.7;
@@ -503,6 +503,37 @@ section {
     align-items: start;
 }
 
+.project-links {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+    padding-top: 4px;
+    flex-shrink: 0;
+}
+
+.project-live,
+.project-gh {
+    font-size: 12px;
+    font-weight: 500;
+    color: #555;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+}
+
+.project-live {
+    color: #111;
+    border-color: #aaa;
+}
+
+.project-live:hover,
+.project-gh:hover {
+    color: #111;
+    border-color: #111;
+}
+
 .project-item:first-child {
     border-top: 1px solid #f0f0f0;
 }
@@ -855,19 +886,6 @@ body.nav-open {
         grid-template-columns: 1fr;
         gap: 0;
         position: relative;
-    }
-
-    .project-arrow {
-        /* Move arrow to top-right corner */
-        position: absolute;
-        top: 36px;
-        right: 0;
-    }
-
-    .project-desc {
-        max-width: 100%;
-        /* Give a bit of right padding so text doesn't go under the arrow */
-        padding-right: 28px;
     }
 
     /* Education */
